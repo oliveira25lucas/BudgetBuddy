@@ -1,4 +1,4 @@
-package com.oliveira25lucas.BudgetBuddy;
+package com.oliveira25lucas.budgetBuddy;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

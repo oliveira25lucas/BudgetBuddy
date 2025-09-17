@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.oliveira25lucas</groupId>
-	<artifactId>BudgetBuddy</artifactId>
+	<artifactId>budgetBuddy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BudgetBuddy</name>
 	<description>BudgetBuddy</description>
