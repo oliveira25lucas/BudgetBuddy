@@ -49,5 +49,5 @@ public class Account {
     }
     @Override public int hashCode() { return 31; }
 
-    public enum AccountStatus { ACTIVE, ARCHIVED }
+    public enum AccountStatus { ACTIVE, ARCHIVED, INACTIVE }
 }
