@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user",
+@Table(name = "user_info",
         uniqueConstraints = @UniqueConstraint(name = "uq_user_email", columnNames = "email"))
 @Getter @Setter @NoArgsConstructor
 public class User {
