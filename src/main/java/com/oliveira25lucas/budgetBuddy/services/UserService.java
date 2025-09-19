@@ -16,14 +16,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private AccountRepository accountRepository;
-
     public User findById(Long id) {
-
         Optional<User> user = this.userRepository.findById(id);
-        return user.orElseThrow(()-> new RuntimeException("User not found" + id + ", Type: " + User.class.getName()));
-
+        return user.orElseThrow(()-> new RuntimeException("User not found. Id: " + id + ", Type: " + User.class.getName()));
     }
 
     @Transactional
@@ -49,7 +44,7 @@ public class UserService {
         try {
             this.userRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RuntimeException("Not able to delete user " + id + ", Type: " + User.class.getName());
+            throw new RuntimeException("Not able to delete user. Id: " + id + ", Type: " + User.class.getName());
         }
     }
 }

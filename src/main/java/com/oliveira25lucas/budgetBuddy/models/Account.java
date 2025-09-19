@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "account",
         uniqueConstraints = @UniqueConstraint(name = "uq_account_user_name", columnNames = {"user_id","name"}))
@@ -40,6 +42,15 @@ public class Account {
     @PositiveOrZero
     @Column(nullable = false)
     private double balance = 0.0;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
+    @PreUpdate
+    public void touch() { this.updatedAt = LocalDateTime.now(); }
 
     @Override public boolean equals(Object o) {
         if (this == o) return true;
