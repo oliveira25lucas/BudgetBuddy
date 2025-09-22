@@ -3,10 +3,13 @@ package com.oliveira25lucas.budgetBuddy.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,6 +23,13 @@ public class User {
 
     @NotBlank @Size(min = 2, max = 100)
     private String name;
+
+    @Past
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
+
+    @NotBlank @Size(min = 9, max = 15)
+    private String cpf;
 
     @Email @NotBlank @Size(max = 150)
     @Column(nullable = false)
