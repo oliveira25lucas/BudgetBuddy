@@ -32,6 +32,9 @@ public class UserService {
     public User update(User user) {
         User newUser = findById(user.getId());
         newUser.setName(user.getName());
+        newUser.setBirthDate(user.getBirthDate());
+        newUser.setCpf(user.getCpf());
+        newUser.setPassword(user.getPassword());
         newUser.setEmail(user.getEmail());
         newUser.setPhone(user.getPhone());
         newUser.setAddress(user.getAddress());
