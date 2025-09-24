@@ -1,4 +1,4 @@
-package com.oliveira25lucas.budgetBuddy.controller;
+package com.oliveira25lucas.budgetBuddy.controllers;
 
 import com.oliveira25lucas.budgetBuddy.models.Account;
 import com.oliveira25lucas.budgetBuddy.services.AccountService;

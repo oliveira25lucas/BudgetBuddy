@@ -1,10 +1,9 @@
-package com.oliveira25lucas.budgetBuddy.controller;
+package com.oliveira25lucas.budgetBuddy.controllers;
 
 import com.oliveira25lucas.budgetBuddy.models.User;
 import com.oliveira25lucas.budgetBuddy.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
