@@ -25,6 +25,10 @@ public class Account {
     @com.fasterxml.jackson.annotation.JsonIgnore
     private User user;
 
+    @NotNull
+    @Column(nullable = false, length = 100)
+    private String name;
+
 
     @NotNull
     @Column(nullable = false, length = 20)

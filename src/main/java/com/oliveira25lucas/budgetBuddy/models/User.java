@@ -1,10 +1,7 @@
 package com.oliveira25lucas.budgetBuddy.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +11,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user_info",
-        uniqueConstraints = @UniqueConstraint(name = "uq_user_email", columnNames = "email"))
+        uniqueConstraints = {
+        @UniqueConstraint(name = "uq_user_email", columnNames = "email"),
+                @UniqueConstraint(name = "uq_user_cpf", columnNames = "cpf")
+})
 @Getter @Setter @NoArgsConstructor
 public class User {
 
@@ -25,10 +25,13 @@ public class User {
     private String name;
 
     @Past
+    @NotNull
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @NotBlank @Size(min = 9, max = 15)
+    @NotBlank
+    @org.hibernate.validator.constraints.br.CPF
+    @Column(nullable = false, unique = true, length = 11)
     private String cpf;
 
     @Email @NotBlank @Size(max = 150)
@@ -41,6 +44,11 @@ public class User {
 
     @Size(max = 50)
     private String phone;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private User.RoleStatus status = User.RoleStatus.USER;
 
     @Size(max = 200)
     private String address;
@@ -61,4 +69,7 @@ public class User {
         return id != null && id.equals(other.id);
     }
     @Override public int hashCode() { return 31; }
+
+    public enum RoleStatus { USER, ADMIN }
+
 }
