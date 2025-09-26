@@ -3,6 +3,7 @@ package com.oliveira25lucas.budgetBuddy.services;
 import com.oliveira25lucas.budgetBuddy.models.User;
 import com.oliveira25lucas.budgetBuddy.repositories.AccountRepository;
 import com.oliveira25lucas.budgetBuddy.repositories.UserRepository;
+import com.oliveira25lucas.budgetBuddy.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> user = this.userRepository.findById(id);
-        return user.orElseThrow(()-> new RuntimeException("User not found. Id: " + id + ", Type: " + User.class.getName()));
+        return user.orElseThrow(()-> new ObjectNotFoundException("User not found. Id: " + id + ", Type: " + User.class.getName()));
     }
 
     @Transactional
@@ -47,7 +48,7 @@ public class UserService {
         try {
             this.userRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RuntimeException("Not able to delete user. Id: " + id + ", Type: " + User.class.getName());
+            throw new ObjectNotFoundException("Not able to delete user. Id: " + id + ", Type: " + User.class.getName());
         }
     }
 }

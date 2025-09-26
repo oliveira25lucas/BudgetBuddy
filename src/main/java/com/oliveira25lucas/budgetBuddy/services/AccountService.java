@@ -4,6 +4,7 @@ import com.oliveira25lucas.budgetBuddy.models.Account;
 import com.oliveira25lucas.budgetBuddy.models.User;
 import com.oliveira25lucas.budgetBuddy.repositories.AccountRepository;
 import com.oliveira25lucas.budgetBuddy.repositories.UserRepository;
+import com.oliveira25lucas.budgetBuddy.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ public class AccountService {
     
     public Account findById(Long id) {
         Optional<Account> account = this.accountRepository.findById(id);
-        return account.orElseThrow(()-> new RuntimeException("Account not found. Id: " + id + ", Type: " + Account.class.getName()));
+        return account.orElseThrow(()-> new ObjectNotFoundException("Account not found. Id: " + id + ", Type: " + Account.class.getName()));
     }
 
     @Transactional
@@ -49,7 +50,7 @@ public class AccountService {
         try {
             this.accountRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RuntimeException("Not able to delete account. Id: " + id + ", Type: " + Account.class.getName());
+            throw new ObjectNotFoundException("Not able to delete account. Id: " + id + ", Type: " + Account.class.getName());
         }
     }
 }
